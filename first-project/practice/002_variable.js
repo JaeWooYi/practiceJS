@@ -15,3 +15,16 @@ console.log(strNum);
 let strNum2 = 1;
 strNum2 += 1;
 console.log(strNum2);
+
+console.log();
+console.log("------------");
+console.log();
+
+let bool1 = true;
+let bool2 = false;
+console.log(bool1);
+console.log(bool2);
+
+console.log();
+console.log("------------");
+console.log();
