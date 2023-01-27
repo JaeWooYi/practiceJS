@@ -118,19 +118,25 @@ console.log();
 // 이용되는 배열
 // [100,200,3,0,2,1]
 console.log("no 09");
-// let arr = [100, 200, 3, 0, 2, 1];
-// let arr2 = [];
-// function findSmallestElement(param) {
-//   let minNum;
-//   if (param == "") {
-//     console.log("zzz");
-//   } else {
-//     minNum = Math.min.apply(param);
-//     console.log(minNum);
-//   }
-// }
-// findSmallestElement(arr);
-// findSmallestElement(arr2);
+
+function findSmallestElement(arr) {
+  let result = arr[0];
+  if (arr.length === 0) {
+    return 0;
+  }
+  for (let i = 1; i < arr.length; i++) {
+    if (result > arr[i]) {
+      // 다 100보다 작자나.. 이해가 안되네
+      result = arr[i];
+    }
+  }
+  return result;
+}
+
+let smallestNumber = findSmallestElement([100, 200, 3, 0, 2, 1, -1]);
+let smallestNumber2 = findSmallestElement([]);
+console.log(smallestNumber);
+console.log(smallestNumber2);
 
 console.log();
 console.log("------------------------------------------------------");
@@ -146,3 +152,19 @@ console.log();
 //  500 X 0
 //  100 X 3
 console.log("no 10");
+let money1 = 12300;
+let money2 = 63300;
+let money3 = 122000;
+let unit = [50000, 10000, 5000, 1000, 500, 100];
+function changeMoney(money) {
+  for (let i = 0; i < unit.length; i++) {
+    let num = Math.floor(money / unit[i]);
+    console.log(unit[i] + "X" + num);
+    money = money - unit[i] * num;
+  }
+}
+changeMoney(money1);
+console.log();
+changeMoney(money2);
+console.log();
+changeMoney(money3);
