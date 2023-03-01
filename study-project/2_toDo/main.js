@@ -35,20 +35,42 @@ function render() {
   let resultHtml = "";
 
   for (let i = 0; i < taskList.length; i++) {
-    resultHtml += `<div class="task">
-            <div>${taskList[i].taskContent}</div>
+    if (taskList[i].isComplete == true) {
+      resultHtml += `<div class="task">
+            <div class="task-done">${taskList[i].taskContent}</div>
             <div>
-              <button onclick="toggleComplete()">Check</button>
-              <button>Delete</button>
+              <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
+              <button onclick="deleteTask()">Delete</button>
             </div>
           </div>`;
+    } else {
+      resultHtml += `<div class="task">
+        <div>${taskList[i].taskContent}</div>
+        <div>
+          <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
+          <button onclick="deleteTask()">Delete</button>
+        </div>
+      </div>`;
+    }
   }
 
   document.getElementById("task-board").innerHTML = resultHtml;
 }
 
-function toggleComplete() {
-  console.log("check");
+function toggleComplete(id) {
+  for (let i = 0; i < taskList.length; i++) {
+    if (taskList[i].id == id) {
+      //   taskList[i].isComplete = true;     // 이거일때는 밑줄한번 그이면 영원히 였자나
+      taskList[i].isComplete = !taskList[i].isComplete;
+      break;
+    }
+  }
+  render();
+  console.log(taskList);
+}
+
+function deleteTask() {
+  console.log("test delete");
 }
 
 function randomIdGenerate() {
