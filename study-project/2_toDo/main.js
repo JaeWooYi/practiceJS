@@ -14,7 +14,16 @@
 
 let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
+let tabs = document.querySelectorAll(".task-tabs div");
+let mode = "all";
+let filterList = [];
 let taskList = [];
+
+for (let i = 1; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", function (event) {
+    filter(event);
+  });
+}
 
 addButton.addEventListener("click", addTask);
 
@@ -27,28 +36,35 @@ function addTask() {
   };
   //   taskList.push(taskContent);    --> 객체로 대신할꺼기 때문에 필요가 없어짐.
   taskList.push(task);
-  console.log(taskList);
   render();
+  console.log("addTask : ", taskList);
 }
 
 function render() {
-  let resultHtml = "";
+  let list = [];
 
-  for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].isComplete == true) {
+  if (mode == "all") {
+    list = taskList;
+  } else if (mode == "onGoing") {
+    list = filterList;
+  }
+
+  let resultHtml = "";
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].isComplete == true) {
       resultHtml += `<div class="task">
-            <div class="task-done">${taskList[i].taskContent}</div>
+            <div class="task-done">${list[i].taskContent}</div>
             <div>
-              <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
-              <button onclick="deleteTask('${taskList[i].id}')">Delete</button>
+              <button onclick="toggleComplete('${list[i].id}')">Check</button>
+              <button onclick="deleteTask('${list[i].id}')">Delete</button>
             </div>
           </div>`;
     } else {
       resultHtml += `<div class="task">
-        <div>${taskList[i].taskContent}</div>
+        <div>${list[i].taskContent}</div>
         <div>
-          <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
-          <button onclick="deleteTask('${taskList[i].id}')">Delete</button>
+          <button onclick="toggleComplete('${list[i].id}')">Check</button>
+          <button onclick="deleteTask('${list[i].id}')">Delete</button>
         </div>
       </div>`;
     }
@@ -66,7 +82,7 @@ function toggleComplete(id) {
     }
   }
   render();
-  console.log(taskList);
+  console.log("toggleComplete : ", taskList);
 }
 
 function deleteTask(id) {
@@ -79,6 +95,23 @@ function deleteTask(id) {
   }
   //   console.log(taskList);
   render();
+}
+
+function filter(event) {
+  mode = event.target.id;
+  console.log("필터테스트", event.target);
+  filterList = [];
+  if (mode == "all") {
+    render();
+  } else if (mode == "onGoing") {
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].isComplete == false) {
+        filterList.push(taskList[i]);
+      }
+    }
+    // taskList = filterList;
+    render();
+  }
 }
 
 function randomIdGenerate() {
