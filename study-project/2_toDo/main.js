@@ -45,7 +45,7 @@ function render() {
 
   if (mode == "all") {
     list = taskList;
-  } else if (mode == "onGoing") {
+  } else if (mode == "onGoing" || mode == "done") {
     list = filterList;
   }
 
@@ -101,6 +101,14 @@ function filter(event) {
   mode = event.target.id;
   console.log("필터테스트", event.target);
   filterList = [];
+
+  document.getElementById("under-line").style.width =
+    event.target.offsetWidth + "px";
+  document.getElementById("under-line").style.top =
+    event.target.offsetHeight + "px";
+  document.getElementById("under-line").style.left =
+    event.target.offsetLeft + "px";
+
   if (mode == "all") {
     render();
   } else if (mode == "onGoing") {
@@ -109,7 +117,14 @@ function filter(event) {
         filterList.push(taskList[i]);
       }
     }
-    // taskList = filterList;
+    // taskList = filterList;   // --> 이렇게 하면 덮어쓰기 되서 안돼.
+    render();
+  } else if (mode == "done") {
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].isComplete == true) {
+        filterList.push(taskList[i]);
+      }
+    }
     render();
   }
 }
