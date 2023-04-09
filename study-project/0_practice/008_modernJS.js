@@ -29,3 +29,13 @@ let test = {
 
 let { testName, testAge } = test;
 console.log(testName, testAge);
+
+console.log();
+console.log("-----------------------------");
+console.log();
+
+let a = "testBoy";
+let b = "10";
+
+console.log("My name is " + a + ", My age is " + b);
+console.log(`My name is ${a}, My age is ${b}`);
