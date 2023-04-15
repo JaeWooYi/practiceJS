@@ -39,3 +39,29 @@ let b = "10";
 
 console.log("My name is " + a + ", My age is " + b);
 console.log(`My name is ${a}, My age is ${b}`);
+
+console.log();
+console.log("-----------------------------");
+console.log();
+
+let array = [1, 2, 3];
+let [z, x, y] = array;
+console.log(z, x, y);
+
+let [w, ...rest] = array;
+console.log(w);
+console.log(rest);
+
+console.log();
+console.log("-----------------------------");
+console.log();
+
+let person3 = {
+  nameK: "KKK",
+  age: 100,
+  cute: true,
+};
+// let { nameZ, ageZ, cute } = person3;
+let { nameK, ...restInfo } = person3;
+console.log(person3);
+console.log(nameK, restInfo);
