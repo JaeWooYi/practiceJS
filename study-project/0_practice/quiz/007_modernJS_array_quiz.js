@@ -25,14 +25,18 @@ console.log("------------------------------");
 console.log();
 
 // 2.
-//   filter 문제
-//   이름에 a를 포함한 사람들을 출력하시오.
-//   이름에 같은 글자가 연속해서 들어간 사람을 출력하시오. (예-tt,ff,ll 이런 글자들)
+// filter 문제
+// 이름에 a를 포함한 사람들을 출력하시오.
+// 이름에 같은 글자가 연속해서 들어간 사람을 출력하시오. (예-tt,ff,ll 이런 글자들)
 console.log("--2--");
+let secondArr = [];
 function second(arr) {
   for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i].includes("a"));
+    if (arr[i].includes("a")) {
+      secondArr.push(arr[i]);
+    }
   }
+  console.log(secondArr);
 }
 second(names);
 
