@@ -50,6 +50,15 @@ console.log();
 //   성을 제외한 이름에 p를 포함한 사람이 있는가?(대소문자 상관 no)
 console.log("--3--");
 
+function third(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].length >= 20) {
+      console.log(array[i]);
+    }
+  }
+}
+third(names);
+
 console.log();
 console.log("------------------------------");
 console.log();
