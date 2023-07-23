@@ -60,6 +60,17 @@ function third(array) {
 third(names);
 
 console.log();
+
+function third2(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].includes("P" || "p")) {
+      console.log(array[i]);
+    }
+  }
+}
+third2(names);
+
+console.log();
 console.log("------------------------------");
 console.log();
 
