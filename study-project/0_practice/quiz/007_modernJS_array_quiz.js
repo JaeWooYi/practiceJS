@@ -76,9 +76,18 @@ console.log();
 
 // 4.
 //   every 문제
-//   모두의 전체 이름의 길이가 20자 이상인가?
-//   모두의 이름에 a 가 포함되어 있는가?
+//   모두의 전체 이름의 길이가 20자 이상인 사람?
+//   모두의 이름에 a 가 포함되어 사람이 있는가?
 console.log("--4--");
+
+function fourth(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].length >= 20) {
+      console.log(array[i]);
+    }
+  }
+}
+fourth(names);
 
 console.log();
 console.log("------------------------------");
